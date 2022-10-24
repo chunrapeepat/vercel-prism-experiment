@@ -86,10 +86,18 @@ function Scene(props) {
         speed = 1;
       } else {
         const scale = (size - 140) / 100;
-        speed = 10 * scale;
-        console.log(scale)
+        speed = Math.max(1, 10 * scale);
       }
       rainbow.current.material.speed = speed;
+
+      let r = 0.5
+      if (size <= 190) {
+        r = 0.5;
+      } else {
+        const scale = (size - 190) / 100;
+        r = Math.min(0.5 + scale, 1.5);
+      }
+      rainbow.current.material.endRadius = r;
     }
   }, [props.pointer])
 
