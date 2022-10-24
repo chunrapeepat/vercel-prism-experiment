@@ -28,14 +28,22 @@ export function calculateRefractionAngle(incidentAngle, glassIor = 2.5, airIor =
 export default function App() {
   const texture = useLoader(LUTCubeLoader, 'https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/DwlG-F-6800-STD.cube')
   const [pointer, setPointer] = useState({x: 0, y: 0})
+  const [timeoutId, setTimeoutId] = useState(null)
 
   return (
     <>
     <P5Cam onLightMove={(_x,_y) => {
+      clearTimeout(timeoutId)
       const w = window.screen.availWidth
       const h = window.screen.availHeight
       const x = -1 * (_x - w / 2) / (w / 2);
       const y = -1 * (_y - h / 2) / (h / 2);
+
+      const tid = setTimeout(() => {
+        setPointer({x: 0, y: 0})
+      }, 250)
+
+      setTimeoutId(tid)
       setPointer({x,y})
     } }/>
     <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 70 }}>
