@@ -46,14 +46,16 @@ export default function App() {
       setTimeoutId(tid)
       setPointer({x,y})
     } }/>
-    <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 70 }}>
-      <color attach="background" args={['black']} />
-      <Scene pointer={pointer} />
-      <EffectComposer disableNormalPass>
-        <Bloom mipmapBlur levels={9} intensity={1.5} luminanceThreshold={1} luminanceSmoothing={1} />
-        <LUT lut={texture} />
-      </EffectComposer>
-    </Canvas>
+    <div style={{width: window.innerWidth / 1.5, height: window.innerHeight / 1.5, position: 'absolute', left: 0, top: 0}}>
+      <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 50 }}>
+        <color attach="background" args={['black']} />
+        <Scene pointer={pointer} />
+        <EffectComposer disableNormalPass>
+          <Bloom mipmapBlur levels={9} intensity={1.5} luminanceThreshold={1} luminanceSmoothing={1} />
+          <LUT lut={texture} />
+        </EffectComposer>
+      </Canvas>
+    </div>
     </>
   )
 }

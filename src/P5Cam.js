@@ -15,8 +15,8 @@ export default function P5Cam(props) {
     const capture = p5.createCapture({
       video: {
         mandatory: {
-          minWidth: window.innerWidth - 1000,
-          minHeight: window.innerHeight
+          minWidth: window.innerWidth - 200,
+          minHeight: window.innerHeight - 20,
         },
         optional: [{ maxFrameRate: 30 }]
       },
