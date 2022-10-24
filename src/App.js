@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <>
-    <P5Cam onLightMove={(_x,_y) => {
+    <P5Cam onLightMove={(_x,_y,ew,eh) => {
       clearTimeout(timeoutId)
       const w = window.screen.availWidth
       const h = window.screen.availHeight
@@ -44,7 +44,7 @@ export default function App() {
       }, 250)
 
       setTimeoutId(tid)
-      setPointer({x,y})
+      setPointer({x,y,size: (ew + eh) / 2})
     } }/>
     <div style={{width: window.innerWidth / 1.5, height: window.innerHeight / 1.5, position: 'absolute', left: 0, top: 0}}>
       <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 50 }}>
@@ -77,6 +77,21 @@ function Scene(props) {
     rainbow.current.material.speed = 1
     rainbow.current.material.emissiveIntensity = 20
   }, [])
+
+  useEffect(() => {
+    const size = props.pointer.size;
+    if (size) {
+      let speed = 1; 
+      if (size <= 140) {
+        speed = 1;
+      } else {
+        const scale = (size - 140) / 100;
+        speed = 10 * scale;
+        console.log(scale)
+      }
+      rainbow.current.material.speed = speed;
+    }
+  }, [props.pointer])
 
   const vec = new THREE.Vector3()
   const rayMove = useCallback(({ api, position, direction, normal }) => {

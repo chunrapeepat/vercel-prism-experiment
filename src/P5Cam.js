@@ -38,7 +38,7 @@ export default function P5Cam(props) {
       for (var i = 0; i < trackingData.length; i++) {
         const x = trackingData[i].x + trackingData[i].width / 2
         const y = trackingData[i].y + trackingData[i].height / 2
-        props.onLightMove(x, y)
+        props.onLightMove(x, y, trackingData[i].width, trackingData[i].height)
       }
     }
 	};
