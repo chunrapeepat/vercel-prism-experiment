@@ -3,7 +3,7 @@ import Sketch from "react-p5";
 
 let trackingData;
 tracking.ColorTracker.registerColor('white', function(r, g, b) {
-  if (r >= 250 && g >= 250 && b >= 250) {
+  if (r >= 240 && g >= 240 && b >= 240) {
     return true;
   }
   return false;

@@ -40,14 +40,14 @@ export default function App() {
       const y = -1 * (_y - h / 2) / (h / 2);
 
       const tid = setTimeout(() => {
-        setPointer({x: 0, y: 0})
+        setPointer({x: 0, y: 0, size: 100})
       }, 250)
 
       setTimeoutId(tid)
       setPointer({x,y,size: (ew + eh) / 2})
     } }/>
-    <div style={{width: window.innerWidth / 1.5, height: window.innerHeight / 1.5, position: 'absolute', left: 0, top: 0}}>
-      <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 50 }}>
+    <div style={{width: window.innerWidth / 2, height: window.innerHeight / 2, position: 'absolute', left: 0, top: 0}}>
+      <Canvas style={{position: "absolute", top: 0, left: 0}} orthographic gl={{ antialias: false }} camera={{ position: [0, 0, 100], zoom: 37 }}>
         <color attach="background" args={['black']} />
         <Scene pointer={pointer} />
         <EffectComposer disableNormalPass>
